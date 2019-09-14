@@ -227,6 +227,11 @@ class AuditLoggingRuleBook(bre.BaseRuleBook):
             resources = rule_def.get('resource')
             service = rule_def.get('service')
             log_types = rule_def.get('log_types')
+
+            # Change textual log types to numbers
+            numbered_log_types = {'ADMIN_READ': 1, 'DATA_WRITE': 2, 'DATA_READ': 3}
+            log_types = list(map(lambda x: x if isinstance(x, int) else numbered_log_types[x], log_types))
+
             # allowed_exemptions is optional.
             allowed_exemptions = set(rule_def.get('allowed_exemptions', []))
             if not resources or not service or not log_types:

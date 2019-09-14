@@ -434,9 +434,9 @@ class IamAuditConfig(object):
         for audit_config in audit_configs_list:
             service_name = audit_config.get('service')
             log_configs = {}
-            for log_config in audit_config.get('auditLogConfigs'):
-                log_configs[log_config.get('logType')] = set(
-                    log_config.get('exemptedMembers', []))
+            for log_config in audit_config.get('audit_log_configs'):
+                log_configs[log_config.get('log_type')] = set(
+                    log_config.get('exempted_members', []))
             if not service_name or not log_configs or None in log_configs:
                 raise errors.InvalidIamAuditConfigError(
                     'Invalid IAM audit config: {}'.format(audit_config))

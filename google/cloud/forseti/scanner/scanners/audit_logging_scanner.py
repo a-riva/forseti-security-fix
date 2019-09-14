@@ -132,7 +132,7 @@ class AuditLoggingScanner(base_scanner.BaseScanner):
                 if policy.parent.type not in audit_policy_types:
                     continue
                 audit_config = iam_policy.IamAuditConfig.create_from(
-                    json.loads(policy.data).get('auditConfigs', []))
+                    json.loads(policy.data).get('audit_configs', []))
 
                 if policy.parent.type == 'project':
                     project_configs.append(
